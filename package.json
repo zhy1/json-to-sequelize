@@ -1,0 +1,18 @@
+{
+  "name": "json-to-sequelize",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/generator-util.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "xtemplate": "^4.6.1",
+    "xtpl": "^3.4.0"
+  }
+}

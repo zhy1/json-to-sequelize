@@ -1,0 +1,15 @@
+const {{typesName}} = require('sequelize/lib/data-types');
+const sequelize = require('../db/mysql');
+const moment = require("moment");
+
+module.exports = sequelize.define("{{name}}", {
+
+{{#each(schema)}}   {{comment}}:{
+        type:{{type}},
+        exampleValue:"{{this.defaultValue}}",
+        defaultValue:"{{this.defaultValue}}",
+        name:"{{this.comment}}",
+        field:"{{this.comment}}"
+    },
+{{/each}}
+})

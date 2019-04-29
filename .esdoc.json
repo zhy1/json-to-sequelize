@@ -1,0 +1,45 @@
+{
+  "excludes": [
+    "\\.bundle\\.js$",
+    "\\.main\\.js$",
+    "\\.min\\.js",
+    "\\.prod\\.js"
+  ],
+  "plugins": [
+    {
+      "name": "esdoc-standard-plugin",
+      "option": {
+        "lint": {"enable": false},
+        "coverage": {"enable": false},
+        "accessor": {"access": ["public", "protected", "private"], "autoPrivate": true},
+        "undocumentIdentifier": {"enable": true},
+        "unexportedIdentifier": {"enable": false},
+        "typeInference": {"enable": true},
+        "brand": {
+          "logo": "./logo.png",
+          "title": "https://github.com/zhy1/json-to-sequelize",
+          "description": "sequleize to json ",
+          "repository": "https://github.com/zhy1/json-to-sequelize",
+          "site": "https://github.com/zhy1/json-to-sequelize",
+          "author": "zy",
+          "image": "gaussian"
+        },
+        "manual": {
+          "index": "./manual/index.md",
+          "globalIndex": true,
+          "asset": "./manual/asset",
+          "files": [
+            "./manual/overview.md"
+          ]
+        },
+        "test": {
+          "source": "./test/",
+          "interfaces": ["describe", "it", "context", "suite", "test"],
+          "includes": ["(spec|Spec|test|Test)\\.js$"],
+          "excludes": ["\\.config\\.js$"]
+        }
+      }
+    }
+    }
+  ]
+}
