@@ -113,7 +113,7 @@ const sequelizeSchema = async (jsonData, tableName = "testTableName", typesName 
     }
     console.info(schemaData);
     const renderFile = util.promisify(xtpl.renderFile);
-    const content = await renderFile(__dirname + "/sequelize_template.xtpl", {
+    let content = await renderFile(__dirname + "/sequelize_template.xtpl", {
         name: tableName,
         schema: schemaData,
         typesName
@@ -121,6 +121,7 @@ const sequelizeSchema = async (jsonData, tableName = "testTableName", typesName 
     if (content instanceof Error) {
         return console.error("bulkCreate" + content)
     }
+    content = content.replace(/&quot;/g, '"')
     console.error(content);
     return writeFile(path.resolve(process.cwd(), "resources", tableName + "-entity.js"), content)
 }

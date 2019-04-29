@@ -8,8 +8,7 @@ module.exports = sequelize.define("{{name}}", {
         type:{{type}},
         exampleValue:{{this.defaultValue}},
         defaultValue:{{this.defaultValue}},
-        {{#if(this.primaryKey)}}
-        primaryKey:{{this.primaryKey}},
+        {{#if(this.primaryKey)}}primaryKey:{{this.primaryKey}},
         {{/if}}
         name:"{{this.comment}}",
         field:"{{this.comment}}"
