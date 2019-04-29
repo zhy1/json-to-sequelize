@@ -43,7 +43,7 @@ const sequelizeSchema = async (jsonData, tableName = "testTableName", typesName 
             schemaData[prop] = {
                 primaryKey: true,
             }
-        };
+        }
         if (type === 'string') {
             const bigLength = jsonData[prop].length > 0 ? jsonData[prop].length * 10 : 100;
             const match = ["create", "update"].filter(word => word.indexOf(prop) > -1)
@@ -53,21 +53,21 @@ const sequelizeSchema = async (jsonData, tableName = "testTableName", typesName 
                     console.warn(date);
                     schemaData[prop] = Object.assign(schemaData[prop], {
                         type: mapper.time,
-                        defaultValue: jsonData[prop],
+                        defaultValue: '"' + jsonData[prop] + '"',
                         comment: prop
                     })
                 } catch (e) {
                     console.error("生成schema失败", e);
                     schemaData[prop] = Object.assign(schemaData[prop], {
                         type: mapper.string + "(" + bigLength + ")",
-                        defaultValue: jsonData[prop].replace("\n", ""),
+                        defaultValue: '"' + jsonData[prop].replace("\n", "") + '"',
                         comment: prop
                     })
                 }
             } else {
                 schemaData[prop] = Object.assign(schemaData[prop], {
                     type: mapper.string + "(" + bigLength + ")",
-                    defaultValue: jsonData[prop].replace("\n", ""),
+                    defaultValue: '"' + jsonData[prop].replace("\n", "") + '"',
                     comment: prop
                 })
             }
@@ -107,7 +107,7 @@ const sequelizeSchema = async (jsonData, tableName = "testTableName", typesName 
         } else
             schemaData[prop] = Object.assign(schemaData[prop], {
                 type: mapper[type],
-                defaultValue: jsonData[prop],
+                defaultValue: '"' + jsonData[prop] + '"',
                 comment: prop
             })
     }
