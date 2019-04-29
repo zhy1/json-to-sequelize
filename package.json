@@ -1,6 +1,6 @@
 {
   "name": "json-to-sequelize",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "",
   "main": "src/generator-main.js",
   "directories": {
