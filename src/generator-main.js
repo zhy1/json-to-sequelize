@@ -44,7 +44,25 @@ const sequelizeSchema = async (jsonData, tableName = "testTableName", typesName 
                 primaryKey: true,
             }
         }
-        if (type === 'string') {
+        if (type === true || type === false) {
+            schemaData[prop] = Object.assign(schemaData[prop], {
+                type: mapper.boolean,
+                defaultValue: type,
+                comment: prop
+            })
+        } else if (jsonData[prop] === "true") {
+            schemaData[prop] = Object.assign(schemaData[prop], {
+                type: mapper.boolean,
+                defaultValue: true,
+                comment: prop
+            })
+        } else if (jsonData[prop] === "false") {
+            schemaData[prop] = Object.assign(schemaData[prop], {
+                type: mapper.boolean,
+                defaultValue: false,
+                comment: prop
+            })
+        } else if (type === 'string') {
             const bigLength = jsonData[prop].length > 0 ? jsonData[prop].length * 10 : 100;
             const match = ["create", "update"].filter(word => word.indexOf(prop) > -1)
             if (match && match.length > 0) {
@@ -71,8 +89,7 @@ const sequelizeSchema = async (jsonData, tableName = "testTableName", typesName 
                     comment: prop
                 })
             }
-        }
-        else if (type === 'number') {
+        } else if (type === 'number') {
             if (jsonData[prop] - parseInt(jsonData[prop]) !== 0) {
                 schemaData[prop] = Object.assign(schemaData[prop], {
                     type: mapper.double,
@@ -86,24 +103,6 @@ const sequelizeSchema = async (jsonData, tableName = "testTableName", typesName 
                     comment: prop
                 })
             }
-        } else if (type === true || type === false) {
-            schemaData[prop] = Object.assign(schemaData[prop], {
-                type: mapper.boolean,
-                defaultValue: type,
-                comment: prop
-            })
-        } else if (jsonData[prop] === "true") {
-            schemaData[prop] = Object.assign(schemaData[prop], {
-                type: mapper.boolean,
-                defaultValue: true,
-                comment: prop
-            })
-        } else if (jsonData[prop] === "false") {
-            schemaData[prop] = Object.assign(schemaData[prop], {
-                type: mapper.boolean,
-                defaultValue: false,
-                comment: prop
-            })
         } else
             schemaData[prop] = Object.assign(schemaData[prop], {
                 type: mapper[type],
