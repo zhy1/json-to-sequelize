@@ -1,4 +1,4 @@
-const genEntity = require("../src/generator-utils")
+const genEntity = require("../src/generator-main")
 const obj = {
     "aid": "20536702",
     "sdad": "sadasd",
