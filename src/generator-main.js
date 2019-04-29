@@ -120,7 +120,7 @@ const sequelizeSchema = async (jsonData, tableName = "testTableName", typesName 
     if (content instanceof Error) {
         return console.error("bulkCreate" + content)
     }
-    content = content.replace(/&quot;/g, '"')
+    content = content.replace(/&quot;/g, '"').replace(/"true",/g, 'true,').replace(/"false",/g, 'false,')
     console.error(content);
     return writeFile(path.resolve(process.cwd(), "resources", tableName + "-entity.js"), content)
 }
