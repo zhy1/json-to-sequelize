@@ -29,6 +29,7 @@ const sequelizeSchema = async (jsonData, tableName = "testTableName", typesName 
 
     let hasId = false;
     const schemaData = {}
+    Object.keys(jsonData).map(row => schemaData[row] = {});
     if (jsonData["id"]) {
         schemaData["id"] = {
             primaryKey: true,
@@ -42,9 +43,7 @@ const sequelizeSchema = async (jsonData, tableName = "testTableName", typesName 
             schemaData[prop] = {
                 primaryKey: true,
             }
-        } else {
-            schemaData[prop] = {};
-        }
+        };
         if (type === 'string') {
             const bigLength = jsonData[prop].length > 0 ? jsonData[prop].length * 10 : 100;
             const match = ["create", "update"].filter(word => word.indexOf(prop) > -1)
