@@ -11,7 +11,7 @@ module.exports = sequelize.define("{{name}}", {
         {{#if(this.primaryKey)}}primaryKey:{{this.primaryKey}},
         {{/if}}
         name:"{{this.comment}}",
-        field:"{{this.comment}}"
+        field:"{{this.field}}"
     },
 {{/each}}
 })
